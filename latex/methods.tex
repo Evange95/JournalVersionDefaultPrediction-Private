@@ -1,0 +1,71 @@
+\section{Methods}
+\label{sec:methods}
+\subsection{Feature selection}
+In this part we present the technique that allowed us to find the right subset of features.\\\\
+\textbf{Boruta Algorithm}
+
+Boruta (Miron B. Kursa, Witold R. Rudnicki, 2010) is a modern feature selection algorithm which aims at lowering the probability of overfitting while at the same time promotes the most important features which will have an impact on the interpretability of the developed model. The algorithm is designed as a wrapper around a Random Forest classification algorithm. It iteratively removes the features which are
+proved by a statistical test to be less relevant than random probes.\\
+The Boruta algorithm consist of these following steps:
+\begin{enumerate}
+    \item Augment the dataset by adding shadow variables that are just copies of all variables.
+    \item Shuffle the new attributes to remove their correlations with the target value.
+    \item Train a random forest classifier on the extended dataset and gather the Z scores computed
+    \item Find the maximum Z score $Z^*$ among the shadow attributes and then assign a hit to every attribute that scored better than that.
+    \item For each variable with unknown importance perform a two-sided test of equality with $Z^*$.
+    \item Set the variables which have importance significantly lower than $Z^*$ as ‘unimportant’ and permanently remove them from the dataset.
+    \item Set the variables which have importance significantly higher than $Z^*$ as ‘important’.
+    \item Remove all shadow attributes.
+    \item Repeat the procedure until the importance is assigned for all the attributes, or the algorithm has reached the previously set limit of the random forest runs.
+\end{enumerate}
+\subsection{Classifiers}
+\label{subsec:algorithms}
+
+As we explain in Section~\ref{sec:related}, the first approaches for
+assessing the likelihood of companies to fail were based on some fixed
+scores; see the work by Altman~\cite{Altman-8}. Current approaches are
+based on more advanced machine-learning techniques. In this paper we consider a set
+of diverse tree-based machine-learning approaches to predict credit defaults.
+
+In the first test we used five well-known machine-learning approaches.
+We provide a brief description of each of them, as provided by
+Wikipedia.
+
+\textbf{Decision Tree (\DT)}: one of the most popular tool in decision
+analysis and also in Machine Learning. A decision tree is a
+flowchart-like structure in which each internal node represents a
+``test'' on an attribute, each branch represents the outcome of the test, and
+each leaf node represents a class label (decision taken after computing
+all attributes). The paths from root to leaf represent
+classification rules.
+
+\textbf{Random Forest (\RF)}: Random forest are an ensemble learning
+method for classification, regression and other tasks, that operate by
+constructing a multitude of decision trees at training time and
+outputting the class that is the mode of the classes. Random decision
+forests correct for decision trees' habit of overfitting to their
+training set.
+
+\textbf{CatBoost(\CAT)}: Categorical Boosting (L.Prokhorenkova, Gleb Gusev et al. 2019)\cite{catboost} is a new gradient boosting algorithm that improves other standard boosting implementations. It introduce the ordered boosting algorithm, an alternative to gradient boosting based on permutation and an innovative algorithm for processing categorical features. Both of them are created to overcome a problem of target leakage present in currently implementation of gradient boosting algorithm.
+\subsection{Explainability}
+As we already said, understanding the reasons why a model makes a certain prediction is very important especially in financial applications. A method to be considered a good feature attribution method must be consistent and accurate.
+For tree-ensamble methods like gradient boosting machine and random forest, for each input feature is possible to determine an importance value. These values are shown to be inconsistent and thus don't provide clear and definite explanation over the model's prediction.
+Here we explain how a recent approach called treeExplainer is currently the best for this purpose.
+
+\textbf{TreeSHAP}
+TreeSHAP from Explainable AI for Trees by Lundberg et al. (2020) \cite{treeshap} is a modern method to provide interpretability of tree-based models. It provides the first polynomial algorithm to compute optimal explanations based on game theory that directly measure local feature interaction effects and allows to understand global model structure based on those local effects. TreeExplainer is based on Shapley values that in Lundberg and Lee (2017)\cite{shap} is proved to be the only possible method in the broad class of additive feature attribution methods to satisfy the properties of \emph{local accuracy}, \emph{consistency},  \emph{missingness}:
+\begin{enumerate}
+    \item Local accuracy: when approximating a model $f$ for a specific input $x$, the explanation’s attribution values $\phi_i(f,x)$ should sum up to the output $f(x)$
+    \begin{equation}
+        f(x) = \phi_0(f) + \sum_{M}^{i=1}\phi_i(f,x)
+    \end{equation}
+    \item Consistency:in presence of changes in the model, if the contribution of a feature increase or stays equal, its input's attribution should not decrease.
+    \item Missingness: features with no effect on the function $f(x)$ must have no assigned impact.
+\end{enumerate}
+Shapley values are computed by introducing each feature, one at a time, into a conditional expectation function of the model’s output. The change produced is attributed at each step to the feature that was introduced. Then the algorithm average over all possible feature
+orderings.
+
+SHAP(SHapley Additive exPlanation) has been proved to be consistent with human intuition and are very useful due to their ability to provide insights on how each feature plays a role in a single prediction.
+
+
+

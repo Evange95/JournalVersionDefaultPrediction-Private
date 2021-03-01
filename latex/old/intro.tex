@@ -1,0 +1,187 @@
+\section{Introduction}
+\label{sec:intro}
+
+Bankruptcy prediction of a company is, not surprisingly, a topic that
+has attreacted a lot of research in the past decades by multiple
+disciplines~\cite{altman-bankruptcy-17,kumar-review-07,chen-bankruptcy-11,lee-bankruptcy-13,erdogan-bankruptcy-13,cho-bankruptcy-10,wang-bankruptcy-11,Altman-8,Ohlson-9,Begley-10,Lee-10a,Fernandez-11,Odom-13,Atiya-15,Wang-16}.
+Probably the main importance of such research is in bank lending.
+Banks need to predict the possibility of default of a potential
+counterparty before they extend a loan.
+An effective predictive system can lead to a sounder and profitable
+lending decisions leading to significant savings for the
+banks and the companies and, most importantly, to a stable financial
+banking system.
+A stable and effective banking system is crucial for
+financial stability and economic recovery as well highlighted by the
+recent global financial crisis and European debt crisis.
+%The magnitude of bankruptcy costs is a critical issue in terms of
+%capital structure theories.
+\notes[Aris]{It would be good if we can put a number (and a citation) on
+the cost of bankrupt companies on the banking system.}
+
+\notes[ste]{"But in Italy where families and businesses are financed mainly by credit, the wave of corporate bankruptcies and the sharp rise in unemployment have been reflected in an increase in bad debts, and consequently in a worsening of the banks' financial situation.
+The growth of the new deteriorated bank loans and the slowness of the judicial recovery procedures have determined a rapid increase in the stock of these assets, which in 2015 reached a peak of 200 billion, equal to 11 percent of total loans."  (Fabio Panetta, Deputy Governor of the Bank of Italy - Rome - Camera dei Deputati - May 2018)}
+
+Of course, despite the pletora of studies, predictiong the failure of a
+company is a hard task, as demonstrated by the 
+enormous increase in large corporate failures in
+the last decades.
+
+%
+%
+%It has also crucial importance to predict
+%probability of bankruptcy in the assessment of companies’
+%creditworthiness.
+%
+% has revealed the importance of bankruptcy prediction
+%and enforced to improve new techniques.
+%
+%The keystone studies of
+%bankruptcy literature, different findings and views regarding
+%problematic issues of bankruptcy are presented in several studies.
+%
+%The
+%inconclusive results indicate that bankruptcy prediction will remain an
+%attractive field for all parties of financial world.
+%Therefore, the accurate prediction of bankruptcy remains in any case a
+%very important problem in financial and banking management. Basically,
+%it is a binary classification problem, which includes two classes
+%namely \textit{bankrupt} and \textit{non-bankrupt}. 
+
+\notes[Aris]{Stefano, please check the paragraph below.}
+\notes[ste]{OK good}
+
+Most related research has focused on \emph{bankruptcy} prediction, which
+takes place when the company officially has the status of being unable
+to pay its debts (see Section~\ref{sec:problem}). However, companies
+often signal much earlier their financial problems towards the banking
+system by going in \emph{default}. Informally speaking, a company enters
+into a default state if it has failed to meet its requirement to repay
+its loans to the banks (see Section~\ref{sec:problem}). Entering into a
+default state is a strong signal of a company's failure: typically banks
+do not finance a company into such a state and it is correlated with
+future bankruptcy.
+
+In this paper we use historic data for predicting whether a company will
+enter in default. We base our analysis on two sets of data. First, we
+use historic information from \emph{all the loans} obtained by \emph{almost all
+the companies} based in Italy (totaling to around $800K$ companies).
+This information includes information on the companies credit dynamics in the past
+years, as well as past information on relations with banks and on values of protections related to loans
+\notes[Aris]{what should we write here?}
+\notes[ste]{I add some concepts}
+Second, we combine these data with the balance sheets of $300K$
+of these companies (the rest of them are not obliged to produce balance
+sheets). We apply multiple machine-learning techniques, showing that the
+future default status can be predected with reasonable accuracy.
+Note that the dimensions and the information in our dataset exceeds
+significantly those of past work, allowing to obtain a very accurate
+picture of the possibility to predict over various economic sectors.
+
+
+\paragraph{Contributions.} To summarize the contributions of our paper
+\begin{enumerate}
+\item We analyze a vary large dataset ($800K$ companies) with granular
+data (every quarter) on the performance of each company over a period of
+10 year. 
+\item We use these data to predict whether a company will default in the
+next year.
+\notes[Aris]{That's what we do, right? We go back 5 quarters, correct?
+Have we tried to use data from the previous year? That is, use data from
+2017 to predict what will happen in 2019.}
+\notes[ste]{Yes the results are obtained using the previous 5 quarters. In particular we try to forecast default from dec 2014 to dec 2015 (for firms that are OK in dec 2014) using data from sep 2013 to dec 2014. To use more data (I've tried actually up to 5 years if I remember well) seems not improve signiificant the performance}
+\item We combine our data with data available from company balance
+sheets, showing that we can improve further the accuracy of predictions.
+\end{enumerate}
+
+\paragraph{Roadmap.} In Section~\ref{sec:related} we present some related
+work. In Section~\ref{sec:problem} we provide definitions and we
+describe the problem that we solve. In Section~\ref{sec:approach} we
+describe our datasets and the techniques that we use and in
+Section~\ref{sec:experiments} we present our results. We conclude in
+Section~\ref{sec:conclusion}.
+
+%
+%\subsection{Bankruptcy and firms default prediction problem}
+%
+%Bankruptcy and firms default prediction problem are two key issues
+%strongly connected.
+%
+%Corporate loan default prediction has become an
+%increasingly important problem for financial institutions due to the
+%advanced and recent financial crisis.
+%
+%In this article we will examine in
+%particular this issue choosing a very simple approach applied to an
+%Italian database containing information on credit data.
+%
+%To get an idea about the potential impact of the loan default prediction
+%problem, we note that the volume of outstanding debt to corporations in
+%the Euro area is about 5 trillion of euro.
+%
+%The \textit{“Non performing
+%loans”} (NPL) are about 500 billions and they recently increased
+%considerably as a result of the financial crisis and business
+%failures.
+%
+%An improvement in loan default prediction accuracy of just a
+%few percentage points can lead to savings of tens of billions of
+%dollars.
+%
+%In this article we focus only on the corporate loan default prediction
+%problem and we do not address prediction regarding the consumer loans
+%(i.e. loan to households, for example for house purchase).
+%
+%Several recent and advanced techniques for predicting bankruptcy have
+%been developed \cite{kumar-review-07} \cite{wang-bankruptcy-11} over the
+%years.
+%
+%Statistical and Machine Learning techniques are the two broad
+%categories used to predict bankruptcy \cite{chen-bankruptcy-11}
+%\cite{kirkos-fraudulent-07}.
+%
+%Statistical techniques include linear discriminant analysis (LDA),
+%multi-discriminant analysis (MDA) \cite{lee-bankruptcy-13}, logistic
+%regression (LR), etc, while Machine learning techniques (ML) include
+%well-known algorithms such as Artificial neural networks (ANN), SVM
+%\cite{erdogan-bankruptcy-13}, Decision trees \cite{cho-bankruptcy-10}
+%and Random Forest.
+%
+%\begin{figure}[H]
+%\includegraphics[width=160mm, height=60mm]{figs/CFig1.png}
+%\caption{Principal techniques used to predict bankruptcy of the firms.}
+%\end{figure}
+%
+%There are two main approaches to loan default prediction problem.
+%
+%The
+%first approach, the structural approach, is based on modeling the
+%underlying dynamics of interest rates and firm characteristics and
+%deriving the default probability based on these dynamics.
+%
+%The second
+%approach is the empirical or the statistical approach. Instead of
+%modeling the relationship of default with the characteristics of a firm,
+%this relationship is learned from the data.
+%
+%The focus of this article is on the empirical approach, especially the
+%use of Decision Tree, Random Forest and others well-known Machine
+%Learning techniques.
+%
+%Figure 1 shows the principal techniques used to address the bankruptcy
+%prediction problem.
+%
+%
+%
+%
+%
+%
+%This article is structured as follows: 
+%section II contains a literature review, which briefly discusses the
+%various statistical and machine   learning techniques that have been
+%proposed by various researchers. Section III describes the prediction
+%problem, the dataset and the techniques used for the prediction
+%exercise. Section IV presents the experimental results. Finally, Section
+%V concludes the paper.
+
+

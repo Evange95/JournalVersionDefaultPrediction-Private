@@ -1,0 +1,103 @@
+%\documentclass[a4paper,12pt]{article}
+\documentclass{llncs}
+%\documentclass[12pt]{paper}
+%\documentclass[a4paper,twoside,twocolumn]{article}
+\usepackage{authblk}
+
+\usepackage[utf8x]{inputenc}
+\usepackage[english]{babel}
+\usepackage{subfigure}
+\usepackage{float}
+\usepackage{placeins}
+\usepackage{graphicx}
+\usepackage{array}
+%\usepackage[]{algorithm2e}
+\usepackage{setspace}
+\usepackage{xspace}
+\usepackage{cite}
+\usepackage[show]{notes}
+\usepackage{comment}
+%\onehalfspace % interlinea 1.5
+%\doublespace % interlinea 2
+%\usepackage[stdsize,thm]{botex}
+%\usepackage{amsthm}
+%\theoremstyle{plain}
+%\newtheorem{thm}{Theorem}[chapter]
+%\newtheorem{cor}[thm]{Corollary}
+
+%\newtheorem{lem}[thm]{Lemma}
+%\newtheorem{prop}[thm]{Proposition}
+%\theoremstyle{definition}
+%\newtheorem{defn}{Definition}[chapter]
+\usepackage{hyperref}
+%\usepackage[bookmarksopen,bookmarksdepth=2,breaklinks=true]{hyperref}
+
+\newcommand{\AlgFont}[1]{\textbf{#1}}
+
+\newcommand{\GB}{\AlgFont{GB}\xspace}
+\newcommand{\ADA}{\AlgFont{ADA}\xspace}
+\newcommand{\BAG}{\AlgFont{BAG}\xspace}
+\newcommand{\DT}{\AlgFont{DT}\xspace}
+\newcommand{\RF}{\AlgFont{RF}\xspace}
+\newcommand{\NAIVE}{\AlgFont{NAIVE}\xspace}
+\newcommand{\MNB}{\AlgFont{MNB}\xspace}
+\newcommand{\LOG}{\AlgFont{LOG}\xspace}
+\newcommand{\COMB}{\AlgFont{COMB}\xspace}
+\newcommand{\LDA}{\AlgFont{LDA}\xspace}
+\newcommand{\LGBM}{\AlgFont{LGBM}\xspace}
+\newcommand{\CAT}{\AlgFont{CAT}\xspace}
+
+\newcommand{\MeasuresFont}[1]{\textbf{#1}}
+
+\newcommand{\TP}{\MeasuresFont{TP}}
+\newcommand{\FP}{\MeasuresFont{FP}}
+\newcommand{\TN}{\MeasuresFont{TN}}
+\newcommand{\FN}{\MeasuresFont{FN}}
+\newcommand{\Precision}{\MeasuresFont{Pr}}
+\newcommand{\Recall}{\MeasuresFont{Re}}
+\newcommand{\FOne}{\MeasuresFont{F1}}
+\newcommand{\AUC}{\MeasuresFont{AUC}}
+\newcommand{\Kappa}{\MeasuresFont{Kappa}}
+\newcommand{\MCC}{\MeasuresFont{MCC}}
+\newcommand{\Accuracy}{\MeasuresFont{Acc.}}
+
+
+
+\title {Companies default risk prediction with highly interpretable tree-ensemble machine learning model}
+\author{Aris Anagnostopoulos\inst{1}\thanks{Partially supported by ERC Advanced
+    Grant  788893 AMDROMA ``Algorithmic and Mechanism Design Research in Online Markets.''}  \and Stefano
+  Piersanti\inst{1}\inst{2}  \and Valerio Evangelisti\inst{1}}
+
+\institute{
+Sapienza University of Rome, Italy.
+  \email{aris@diag.uniroma1.it,  piersanti@diag.uniroma1.it evangelisti.1774528@studenti.uniroma1.it}
+\and Bank of Italy - Statistical Data Collection and Processing Directorate
+}
+
+
+
+\begin{document}
+
+\maketitle
+
+
+\input{abstract.tex}
+
+%\chapter{Abstract}
+
+\input{intro.tex}
+\input{related.tex}
+\input{methods.tex}
+\input{experimental_setup.tex}
+\input{results.tex}
+\input{conclusion.tex}
+
+
+
+
+\bibliographystyle{splncs04}
+\bibliography{finance}
+
+
+\end{document}
+

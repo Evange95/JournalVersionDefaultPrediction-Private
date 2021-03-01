@@ -1,0 +1,38 @@
+\section{Conclusion}
+\label{sec:conclusion}
+
+Business-failure prediction is a very important topic of study for economic analysis and the regular functioning of the financial system. Moreover the importance of this issue has greatly increased following the recent financial crisis. 
+Furthermore, we can certainly consider that the current global crisis caused by Covid-19 will lead to a significant increase in business failures by amplifying the relevance of a good ability to analyze and predict phenomena.
+
+There have been many recent studies that have tried to predict the failure of companies using various machine-learning techniques.
+In our study, we used for the first time credit information from the ItalianCentral Credit Register and from ECB AnaCredit survey to predict the banking default of Italian companies, using Machine Learning and other well-known statistical techniques.
+We analyzed a very large dataset containing information about almost all the loans of all the Italian companies. Our first findings is that, both in the case of bankruptcy prediction and banks default prediction, machine-learning approaches are able to outperform significantly simpler statistical approaches.
+
+
+In fact, our results confirm the best performance of Machine learning classifier respect to other well-known statistical methods. In addition we show that some recent types of boosting classifiers obtain the best results. 
+ \\
+ Furthemore, in this paper we explored the differences and links between corporate failures and bank defaults. We focus our analysis both on bankruptcy, a well-known issue in literature, and on the bank default, which in many cases anticipates the failure of a company. At the same time it represents an important sign of vulnerability as typically a company in bank default is unable to repay its debts.
+ \\
+ We use Central Credit Register data in combination with balance sheet data in order to predict both bankruptcy and adjusted default. We show that this combination of data can lead to robust performance in prediction. 
+ In fact, using information on past loan data is crucial, but the additional use of balance-sheet data can improve classication even further. We show that the combined use of loan data with balanced-sheet data leads to nice performance for predicting default. We also show that using loan data in the prediction of bankruptcy (where, typically, only balance-sheet data are being used) can play an important role.
+ The forecast performances obtained are very similar, but a relevant point seems to be that balance sheet data seems to be more suitable for predicting bankruptcies, while the loan data helps to predict bank defaults much better. We corroborate this conjecture also in terms of expainability of the prediction results.
+ 
+ In addition we use, for the first time given the novelty of this source of data, also information data from ECB AnaCredit survey, recently started under the coordination of ECB, in order to improve adjusted default prediction in the more recent years.  We try to exploit the predictive capacity of our credit information by using BORUTA, a  feature selection technique that seems to work very well in our case.
+ 
+ This approach seems to improve prediction performance allowing to obtain remarkable results, with an AuROC of 0.93, even in comparison to the most relevant literature on the subject.
+ \\
+
+ Moreover, a relevant point of our work concerns the attempt to explain default predictions; this theme is indeed very relevant for the practical use of forecasting techniques. To this end we used SHAP, a modern method to extract the importance of features in the forecast, showing a robust dependence of our predictions on a series of information that have an important economic significance.
+ For example, as easily understood, probability of default (PD) assessed by the banking system play a significant role in a bank default prediction. But a  comparison exercise with the default prediction based only on PD used by banks shows that predictions with Machine learning provide a very significant gain in performance.
+ \\
+ \\
+ Nevertheless, prediction remains an extremely hard problem in this field with very unbalanced dataset. Yet, even slight improvement in the performance, can lead to savings of multiple hundreds of thousands of euros for the banking system. Thus our goal is to improve classification even further by combining our approaches with further techniques, such as neural-network based ones. Some preliminary results in which we use only neural networks are encouraging, even though are worse than the results we report here.
+ 
+ 
+
+
+
+\begin{comment}
+
+\end{comment}
+

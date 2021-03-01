@@ -1,0 +1,59 @@
+
+\section{Related Work}
+\label{sec:related}
+
+%\subsection{A review of related work}
+There has been an enormous amount of work on bankruptcy prediction. 
+In order to give a flavor of how the literature that concerns bankruptcy prediction models has evolved, we briefly review the most influential previous studies below.
+
+
+\subsection{Early approaches}
+
+Initially, scholars focused on making a linear distinction among healthy
+companies and the ones that will eventually default. Among the most
+influencing pioneers in this field we can distinguish
+Altman~\cite{Altman-8} and Ohlson \cite{Ohlson-9}, both of whom made a
+traditional probabilistic econometric analysis. Altman, essentially
+defined a score, the $Z$ discriminant score, which depends on several
+financial ratios (working capital/total assets, retained earnings/total
+assets, etc.) to asses the financial condition of a company.
+Ohlson on the other side, is using a linear
+regression (LR) logit model that estimates the probability of failure of
+a company and identifies four main factors that affect that probability: the company’s size, its financial structure, its financial performance and its liquidity.
+
+Some papers criticize these methods as unable to classify companies as viable or nonviable~\cite{Begley-10}. However, both
+approaches are used, in the majority of the literature, as a benchmark
+to evaluate more sophisticated methods.
+Those sophisticated methods are the machine learning techniques which are the focus of this paper. Below, we provide a glimpse at the evolution of different techniques and at the comparison among them in the literature.
+
+Since these early works there has been a large number of works based on machine-learning techniques \cite{lin-12, devi-18, nanni-09}.
+The most successful have been based on 
+decision trees \cite{Lee-10a, Zhou-10b, Gepp-10b, Martinelli-12} and neural networks
+\cite{Fernandez-11, Odom-13, Boritz-14,Atiya-15,Wang-16}. Typically, all
+these works use different datasets and different sets of features, depending on the dataset.
+
+One of the first applications of the neural network methods for bankruptcy prediction, is that of Odom and Sharda \cite{Odom-13}. They compared a three perceptron network against a method that was the "rule" until then: the multivariate discriminant analysis using the Altman ratios explained above, and it proved to be more robust in terms of accuracy. Boritz et al \cite{Boritz-14} uses two different techniques to train a neural network: back-propagation and Optimal Estimation Theory (OET), and compares them to more traditional methods such as discriminant analysis, probit and logit, as well as against benchmarks provided by directly applying the bankruptcy prediction models developed by Altman and Ohlson which were previously explained. They find no superiority for neural networks; instead the performance of each technique can be improved based on the relative size of the test and train set on the nature and number of imports etc. Nevertheless, it should be mentioned that they test only one architecture of a neural network.
+Atiya \cite{Atiya-15} suggests the inclusion of features extracted from equity markets because as he states “tend to be highly predictive, not only of the health of a firm, but also of the health of the economy, which in turn affects the creditworthiness of the firm”, with a resulting improvement in accuracy of around four percentage points. What we can grasp from this retrospective look of previous experiments is that, that machine learning techniques probably will perform better in our bankruptcy prediction problem, but regarding the comparison among decision trees and NNs the feelings are mixed. We cannot, though, state with certainty ex-ante which of them will be superior.
+
+There exists a wide range of classification methods included in the category of decision trees. Lee \cite{lee-bankruptcy-13} by making a comparison of three of them using a dataset of Taiwan listed electronic companies concludes that the most efficients (in terms of accuracy) is the Generic Programming decision tree classifier which represents “a technique that applies the Darwinian theory of evolution to develop efficient computer programs (Koza ,1992)”.
+Zhou and Wang \cite{Zhou-10b} on the other side, starting from the traditional random forest, propose the assignment of weights to each of the decision trees created, which are retrieved from each tree’s past performance (out-of-bag errors in training method). They show that this modification improves the performance of the algorithm in terms of overall accuracy as well as the accuracy of their balanced dataset. Gepp and Kumar \cite{Gepp-10b} turn their attention to another method, the Cox survival analysis, and compare it to the CART decision tree classifier and conclude that the former is the best one-year bankruptcy predictor, while the latter outperformed in the three-year prediction. Fernandez and Olmeda \cite{Fernandez-11} compared NN with MDA, LR, MARS and C4.5 (two well-known methods that are based on the CART decision tree algorithm) on Spanish banks and showed that NN resulted in a higher accuracy. Martinelli et al. \cite{Martinelli-12} by doing a very similar analysis on a database of Brazilian firms showed that the C4.5 algorithm is the one that outperforms the other methods.
+
+\subsection{More recent works}
+
+Chakraborty and Joseph (2017) train a set of models to predict distress in financial institutions based on balance sheet items, finding that ML approaches generally outperform statistical models based on logistic regression. Specifically, the RDF model allows for a marked increase in discriminatory power of about 10 percentage points in terms of the Area under the Receiver Operating Characteristic (AuROC) compared with the logit model.
+Using data on US household default on mortgages, Fuster et al. (2018) find that the RDF model generates more accurate predictions than the logit model, although the improvement is minimal and accounts for about 1.2 percentage points of AuROC. The authors argue that most of these gains result from the sophisticated functional form of the RDF model, which captures the complex relationships connecting different variables to default outcomes with greater discriminatory power. 
+Albanesi and Vamossy (2019) develop a model to predict consumer default based on deep learning (i.e. a combination of forecasts from deep neural network and gradient boosting) in environments with high-dimensional data (over 200 variables).
+In a recent very important study, Barboza et al. \cite{altman-bankruptcy-17} compare such techniques with support vector machines and ensemble methods showing that ensemble methods and random forests perform the best.
+Recently, Andini et al. ~\cite{andini-19} have used data from Italian Central Credit Register to assess the creditworthiness of companies in order to propose an improvement in the effectiveness of the assignment policies of the public guarantee programs.
+The majority of the cited works typically try to predict bankruptcy of a company. Our goal is to predict both bankruptcy and bank default, after  explored the related connections between the two critical situations. Furthermore, most of these papers use balance sheet data (which are public). Our dataset contains a very granular information of a very large set of companies on the past behavior of loan repayment. In particular, we use two different important sources of credit information: the Italian Central Credit Register and, for the fist time given the novelty, the Italian component of AnaCredit, that is a very recent European credit dataset. We combine credit data with balance sheet data in order to show that the combination of the two source of information improve the prediction performances.
+To our knowledge, our dataset is one of the most
+extensive dataset used in the literature.
+But the crucial point we wanted to address is that of trying to explain the predictions, investigating through the use of SHAP, the crucial factors that could explain the failures of companies.
+
+
+
+
+
+
+
+
